@@ -1,2 +1,3 @@
 # SimulinkTCPClient
- Customized TCP/IP Client block for Simulink, supports Rapid Accerlater mode.
+
+ Customized TCP/IP Client block for Simulink, supports Rapid Accerlater mode!
