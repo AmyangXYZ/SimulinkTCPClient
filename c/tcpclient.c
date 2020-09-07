@@ -28,31 +28,35 @@ int initSocket()
         return 3;
     }
     initFlag = 1;
+
     return 0;
 }
 
-double TCPSend(double inVal)
+void TCPSend(double *data, double dataLen, double row, double col)
 {
     if (!initFlag)
         initSocket();
 
-    char sendBuf[DEFAULT_BUFLEN];
-
-    snprintf(sendBuf, DEFAULT_BUFLEN, "%.16f", inVal);
+    char sendBuf[BUF_LEN]="", tmpStr[16]="";
+    
+    for(int i=0;i<dataLen;i++)
+    {
+        snprintf(tmpStr, 16, "%.4f,", data[i]);
+        strcat(sendBuf,tmpStr);
+    }
     send(client_socket, sendBuf, (int)strlen(sendBuf), 0);
 
-    Sleep(100);
-    return inVal;
+    Sleep(50);
 }
 
 double TCPRecv()
 {
-    char recvBuf[DEFAULT_BUFLEN];
+    char recvBuf[BUF_LEN];
     int n;
     
     do
     {
-        n = recv(client_socket, recvBuf, DEFAULT_BUFLEN, 0);
+        n = recv(client_socket, recvBuf, BUF_LEN, 0);
         if (n > 0)
         {
             return atof(recvBuf);

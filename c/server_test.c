@@ -12,7 +12,7 @@
 #pragma comment (lib, "Ws2_32.lib")
 // #pragma comment (lib, "Mswsock.lib")
 
-#define DEFAULT_BUFLEN 512
+#define DEFAULT_BUFLEN 4096
 #define DEFAULT_PORT "10001"
 
 int __cdecl main(void) 

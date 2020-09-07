@@ -11,12 +11,23 @@
 
 #define SERVER_ADDR "192.168.1.10"
 #define SERVER_PORT 10001
-#define DEFAULT_BUFLEN 512
+#define BUF_LEN 4096
+#define DATA_LEN 64
+
+struct Msg {
+    char sender[4];
+    char receiver[4];
+    char type[4];
+    char size_row;
+    char size_col;
+    char data[4082];
+} msg_t;
 
 SOCKET client_socket;
 int initFlag;
+
 int initSocket();
-double TCPSend(double);
+void TCPSend(double *data, double dataLen, double row, double col);
 double TCPRecv();
 
 #endif
